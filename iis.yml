@@ -34,10 +34,10 @@
 
   - name: Transfer Website HTML
     win_get_url:
-      url: https://raw.githubusercontent.com/jpboyce/ansible-demo/master/website/index.html
+      url: https://raw.githubusercontent.com/MohanRamadoss/ansiblewindows/master/website/index.html
       dest: c:\sites\testsite\index.html
       
   - name: Transfer Website Image
     win_get_url:
-      url: https://github.com/jpboyce/ansible-demo/raw/master/website/cat.jpg
+      url: https://github.com/MohanRamadoss/ansiblewindows/blob/master/website/cat.jpg
       dest: c:\sites\testsite\cat.jpg   
