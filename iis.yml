@@ -1,0 +1,43 @@
+---
+- name: IIS Playbook
+  hosts: demowin
+  gather_facts: yes
+
+  tasks:
+  - debug:
+      msg: "{{ ansible_facts['ip_addresses'] }}"
+
+  - name: Install IIS Web-Server with sub features and management tools
+    win_feature:
+      name: Web-Server
+      state: present
+      include_sub_features: yes
+      include_management_tools: yes
+    register: win_feature # Registering the result of installing the feature to the variable win_feature
+
+  - name: Reboot if required
+    win_reboot:
+    when: win_feature.reboot_required # reboot_required is one of the return values when installing a feature
+
+  - name: Create site folder
+    win_file:
+      path: c:\sites\testsite
+      state: directory
+
+  - name: Configure Website
+    win_iis_website:
+        name: Test Site
+        state: started 
+        ip: "{{ ansible_facts['ip_addresses'][0] }}"
+        port: 81
+        physical_path: c:\sites\testsite
+
+  - name: Transfer Website HTML
+    win_get_url:
+      url: https://raw.githubusercontent.com/jpboyce/ansible-demo/master/website/index.html
+      dest: c:\sites\testsite\index.html
+      
+  - name: Transfer Website Image
+    win_get_url:
+      url: https://github.com/jpboyce/ansible-demo/raw/master/website/cat.jpg
+      dest: c:\sites\testsite\cat.jpg   

@@ -1,0 +1,15 @@
+---
+- name: Windows Firewall Playbook
+  hosts: demowin
+
+  tasks:
+  - name: Allow port 2000
+    win_firewall_rule:
+        name: Allow Port 2000
+        localport: 2000
+        action: allow
+        direction: in
+        protocol: tcp
+        profiles: private
+        state: present
+        enabled: yes

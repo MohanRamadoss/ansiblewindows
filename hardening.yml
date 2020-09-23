@@ -1,0 +1,29 @@
+---
+- name: Hardening Sample Playbook
+  hosts: demowin
+
+  tasks:
+  - name: CIS 1.1.6 - Ensure 'Store passwords using reversible encryption' is set to 'Disabled' 
+    win_security_policy:
+        section: System Access
+        key: ClearTextPassword
+        value: 0
+  - name: CIS 2.2.23 - Ensure 'Deny log on as a service' to include 'Guests'
+    win_user_right:
+        name: SeDenyServiceLogonRight
+        users: Guests
+        action: set
+  - name: CIS 2.3.7.4 - Configure 'Interactive logon Message text for users attempting to log on'
+    win_regedit:
+        path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+        state: present
+        name: LegalNoticeText
+        type: string
+        data: Scary Legal Message
+  - name: CIS 2.3.7.5 - Configure 'Interactive logon Message title for users attempting to log on'
+    win_regedit:
+        path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+        state: present
+        name: LegalNoticeCaption
+        type: string
+        data: '*** WARNING ***'

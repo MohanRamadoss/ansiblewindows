@@ -1,0 +1,11 @@
+---
+- name: Powershell 7 Playbook
+  hosts: demowin
+
+  tasks:
+  - name: Install Powershell 7
+    win_package:
+        state: present 
+        path: http://192.168.20.2/software/Microsoft/PowerShell/7.x/PowerShell-7.0.1-win-x64.msi
+        arguments: /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1
+        product_id: '{8B844F39-E6EE-486B-BE85-96A485AE2B96}'
