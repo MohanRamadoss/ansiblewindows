@@ -35,19 +35,26 @@ These instructions are for CentOS 8.  You can find instructions for other platfo
 5. Add an inventory section for the Windows machine
 ```shell
 # Ansible Demo Inventory
-[demowin]
+[windows]
 
-192.168.20.205
+winansible1
 ```
 6. Add a variables section so Ansible knows how to connect to it properly and what account to use
 ```shell
 # Ansible Demo Variables
 [demowin:vars]
 
+
+[windows]
+winansible1
+
+[windows:vars]
+ansible_user='Administrator'
+ansible_password='%o)q.d9oqLryf&m75pr(46)gyon37dnE'
+ansible_port=5986
 ansible_connection=winrm
-ansible_port=5985
-ansible_user=ansible
-ansible_password=@ns1bl3isg00d!
+ansible_winrm_server_cert_validation=ignore
+[root@controller ~]#
 ```
 7. Save the file
 8. Test that it works using the `win_ping` module: `ansible all -m win_ping`
@@ -61,8 +68,3 @@ To run one of the playbooks on the Control Machine, use the command: `ansible-pl
 * [Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html)
 * [Ansible Examples](https://github.com/ansible/ansible-examples)
 * [Ansible Galaxy](https://galaxy.ansible.com/) (Community Contributions)
-* [Chef Documentation](https://docs.chef.io/)
-* [Chef Examples](https://github.com/chef-cft/chef-examples)
-* [Chef Supermarket](https://supermarket.chef.io/) (Community Contributions)
-* [Puppet Documentation](https://puppet.com/docs/puppet/latest/puppet_index.html)
-* [Puppet Forge](https://forge.puppet.com/)  (Community Contributions)
