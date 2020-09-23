@@ -13,7 +13,7 @@ Resources for Ansible demo
 Configuring a Windows target to be managed by Ansible involves two parts - defining/creating an account that Ansible will use and configuring WinRM on the target
 
 ### Ansible User Account
-1. Create a user account:  `net user ansible "@ns1bl3isg00d!" /add`
+1. Create a user account:  `net user ansible "P@SSword#$!" /add`
 2. Add user to the local administrators group:  `net localgroup "administrators" "ansible" /add`
 
 ### Configuring WinRM
@@ -60,7 +60,7 @@ ansible_winrm_server_cert_validation=ignore
 8. Test that it works using the `win_ping` module: `ansible all -m win_ping`
 
 ## Getting and Using Demo Resources
-The easiest way to get the demo resources onto the Control Machine would be to clone this repo: `git clone https://github.com/jpboyce/ansible-demo.git`.  Update the yml files as necessary - specifically `powershell.yml` and `notepadplusplus.yml` will need to have the path attributes updated.
+The easiest way to get the demo resources onto the Control Machine would be to clone this repo: `git clone https://github.com/MohanRamadoss/ansiblewindows.git`.  Update the yml files as necessary - specifically `powershell.yml` and `notepadplusplus.yml` will need to have the path attributes updated.
 
 To run one of the playbooks on the Control Machine, use the command: `ansible-playbook <playbookfilename>`.  For example: `ansible-playbook sysinternals.yml`
 
