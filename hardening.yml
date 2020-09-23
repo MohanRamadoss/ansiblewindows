@@ -1,6 +1,6 @@
 ---
 - name: Hardening Sample Playbook
-  hosts: demowin
+  hosts: windows
 
   tasks:
   - name: CIS 1.1.6 - Ensure 'Store passwords using reversible encryption' is set to 'Disabled' 
