@@ -1,6 +1,6 @@
 ---
 - name: Sysinternals Playbook
-  hosts: demowin
+  hosts: windows
 
   tasks:
   - name: Create Temp Folder
